@@ -1,0 +1,131 @@
+.app {
+  margin: 0;
+  padding: 0;
+  /* text-align: center; */
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* background-color: #7A5CFA; */
+  background-color: #7a5cfa26;
+
+
+}
+
+.container {
+  width: 760px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 96px 0;
+  background-color: #FFFFFF;
+
+  .ant-form {
+    width: 564px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+
+    .label {
+      color: #666666;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 18px;
+      margin: 0 0 8px 0;
+    }
+
+    .noPassword {
+      .ant-input {
+        // padding: 16px;
+        border-radius: 8px;
+        border: 1px solid #CCCCCC;
+        padding: 14px;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+
+        &:hover, &:active, &:focus, &:focus-visible {
+          border: 2px solid #7A5CFA;
+          box-shadow: none;
+        }
+      }
+
+      .ant-select {
+        border-radius: 8px;
+        border: 1px solid #CCCCCC;
+        // padding: 14px;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+
+        &:hover {
+          border: 1px solid #7A5CFA;
+          box-shadow: none;
+        }
+
+        
+      }
+      
+      .ant-select-dropdown {
+        // .ant-select-item-option-selected {
+        //   background-color: #7A5CFA;
+        // }
+
+      }
+      .ant-select, .ant-select-dropdown {
+        width: 100%;
+      }
+
+    }
+
+    .password {
+      .ant-input {
+        margin: 0;
+        height: 100%;
+      }
+
+      .ant-input-password {
+        border-radius: 8px;
+        border: 1px solid #CCCCCC;
+        padding: 14px;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+
+        &:hover, &:active, &:focus, &:focus-visible {
+          // border: 1px solid #7A5CFA;
+          border: 2px solid #7A5CFA;
+          box-shadow: none;
+        }
+      }
+
+      .ant-input-suffix {
+        display: none;
+      }
+
+    }
+    .ant-input, .ant-input-password {
+      height: 56px;
+      width: 564px;
+    }
+
+    .ant-radio-checked .ant-radio-inner {
+      border-color: #CCCCCC;
+      background-color: white;
+    }
+
+    .ant-radio-inner::after {
+      background-color: #7A5CFA;
+    }
+
+
+    .footer {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+
+}
