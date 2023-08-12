@@ -10,6 +10,8 @@ function App() {
   const [isRemembering, setIsRemembering] = useState(false);
   const [stateSwitch, setStateSwitch] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedRadio, setSelectedRadio] = useState(null);
+
   const [dataForm, setDataForm] = useState(null)
   const [errorsForm, setErrorsForm] = useState(null)
 
@@ -20,9 +22,9 @@ function App() {
     setTextLabel(null);
     setIsRemembering(false);
     setSelectedOption(null);
+    setStateSwitch(false);
+    setSelectedRadio(null);
   }
-
-
 
 
   return (
@@ -30,12 +32,12 @@ function App() {
       <div className='container'>
         <Form
           onFinish={(values) => {
-            console.log('values: ', values)
-            setDataForm(values);
+            // console.log('values: ', values)
+            setDataForm(values.values);
             }
           }
           onFinishFailed={(failedValues) => {
-            console.log('failedValues: ', failedValues)
+            // console.log('failedValues: ', failedValues)
             setErrorsForm(failedValues)
             }}  
           > 
@@ -91,8 +93,12 @@ function App() {
 
           <Form.Item label="" name='rememberMe'>
             <Checkbox
-              checked={!!isRemembering}
-              onChange={(e) => setIsRemembering(!e.target.value)}
+              value={!!isRemembering}
+              // defaultChecked
+              // checked={!!isRemembering}
+              onChange={(e) => {
+                setIsRemembering(!e.target.checked)
+              }}
             >
             Remember me
             </Checkbox>
@@ -106,17 +112,19 @@ function App() {
             />
           </Form.Item>
 
-          <Radio.Group 
-            // onChange={onChange} 
-            // value={value}
-            >
-            <Space direction="vertical">
-              <Radio value={1}>Radio section 1</Radio>
-              <Radio value={2}>Radio section 2</Radio>
-              <Radio value={3}>Radio section 3</Radio>
+          <Form.Item label="" name='radioSelection'>
+            <Radio.Group 
+              value={selectedRadio}
+              onChange={(e) => setSelectedRadio(e.target.value)}
+              >
+              <Space direction="vertical">
+                <Radio value={1}>Radio selection 1</Radio>
+                <Radio value={2}>Radio selection 2</Radio>
+                <Radio value={3}>Radio selection 3</Radio>
 
-            </Space>
-          </Radio.Group>
+              </Space>
+            </Radio.Group>
+          </Form.Item>
 
           <Form.Item 
             label="" 
@@ -146,7 +154,8 @@ function App() {
           <Button onClick={() => reset()}>Cancel</Button>
           <Button 
             htmlType='submit' 
-            // disabled={}
+            disabled={!userName && !password && !textLabel && !isRemembering && !stateSwitch && !selectedOption && !selectedRadio}
+
           >Next</Button>
         </div>
 
