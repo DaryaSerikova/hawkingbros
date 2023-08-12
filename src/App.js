@@ -8,7 +8,11 @@ function App() {
   const [password, setPassword] = useState(null);
   const [textLabel, setTextLabel] = useState(null);
   const [isRemembering, setIsRemembering] = useState(false);
+  const [stateSwitch, setStateSwitch] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [dataForm, setDataForm] = useState(null)
+  const [errorsForm, setErrorsForm] = useState(null)
+
 
   const reset = () => {
     setUserName(null);
@@ -24,10 +28,16 @@ function App() {
   return (
     <div className="app">
       <div className='container'>
-        {/* <form className='form'> */}
         <Form
-          onFinish={(values) => console.log('values: ', values)}  
-          onFinishFailed={(failedValues) => console.log('failedValues: ', failedValues)}  
+          onFinish={(values) => {
+            console.log('values: ', values)
+            setDataForm(values);
+            }
+          }
+          onFinishFailed={(failedValues) => {
+            console.log('failedValues: ', failedValues)
+            setErrorsForm(failedValues)
+            }}  
           > 
           <Form.Item 
             label="" 
@@ -89,10 +99,10 @@ function App() {
 
           </Form.Item>
 
-          <Form.Item label="" name=''>
+          <Form.Item label="" name='off'>
             <Switch 
-              defaultChecked
-            //  onChange={onChange} 
+              value={!!stateSwitch}
+              onChange={(e) => setStateSwitch(!e)}
             />
           </Form.Item>
 
@@ -111,13 +121,14 @@ function App() {
           <Form.Item 
             label="" 
             name='dropdownTitle'
-            required
-            rules={[{required: true, message: 'Please enter username'}]}
           >
             <div className='formItem noPassword'>
               <p>Dropdown Title</p>
               <Select
-                onChange={(value) => setSelectedOption(value)}
+                onChange={(value) => {
+                  setSelectedOption(value)
+                  console.log(value)
+                }}
                 value={selectedOption}
 
                 options={[
@@ -130,7 +141,6 @@ function App() {
             </div>
             </Form.Item>
 
-          {/* </Space> */}
 
         <div className="footer">
           <Button onClick={() => reset()}>Cancel</Button>
